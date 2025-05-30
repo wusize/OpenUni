@@ -1,4 +1,20 @@
-## Env (just for reference)
+# OpenUni: A Simple Baseline for Unified Multimodal Understanding and Generation
+
+![](data/teaser.png)
+
+> **[OpenUni: A Simple Baseline for Unified Multimodal Understanding and Generation](https://arxiv.org/abs/2505.23661)**
+>
+> Size Wu, Zhonghua Wu, Zerui Gong, Qingyi Tao, Sheng Jin, Qinyue Li, Wei Li, Chen Change Loy
+>
+> [![arXiv](https://img.shields.io/badge/arXiv-2505.23661-b31b1b.svg)](https://arxiv.org/abs/2505.23661)
+> [![Bibtex](https://img.shields.io/badge/Cite-BibTeX-blue)](https://github.com/wusize/OpenUni?tab=readme-ov-file#-citation)
+
+## Introduction
+
+This is a repo under construction, named OpenUni, an open-source version of [MetaQuery](https://xichenpan.com/metaquery) for unifying multimodal understanding and generation.
+Currently, we provide three model variants: OpenUni-B-512, OpenUni-L-512, OpenUni-L-1024. We will be updating this repo so stay tuned!
+
+## Environment (just for reference)
 ```
 mmengine
 xtuner
@@ -8,47 +24,30 @@ flash_attn==2.3.4
 ```
 
 
-## Inference
 
+## 📚 Citation
 
-```shell
-export PYTHONPATH=.
-python scripts/text2image.py configs/models/openuni_b_internvl3_1b_sana_0_6b_512_hf.py --checkpoint /path/to/your/ckpt \
-             --prompt "a dog on the left and a cat on the right." \
-             --output /path/to/save/the/result.jpg \
-             --height 512 -width 512 \
-             --seed 42
+If you find OpenUni useful for your research or applications, please cite our paper using the following BibTeX:
+
+```bibtex
+@article{wu2025openuni,
+      title={OpenUni: A Simple Baseline for Unified Multimodal Understanding and Generation}, 
+      author={Size Wu and Zhonghua Wu and Zerui Gong and Qingyi Tao and Sheng Jin and Qinyue Li and Wei Li and Chen Change Loy},
+      year={2025},
+      eprint={2505.23661},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2505.23661}, 
+}
 ```
 
-
-## Train
-
-```shell
-export PYTHONPATH=.
-torchrun --nproc_per_node=1 --nnodes=8 scripts/train.py \ 
-           configs/finetune/openuni_l_internvl3_1b_sana_0_6b_512_hf_blip3o60k.py \ 
-           --launcher pytorch  --deepspeed deepspeed_zero2
-```
+## 📜 License
+This project is licensed under [NTU S-Lab License 1.0](LICENSE).
 
 
-## Evaluation
-
-### GenEval
-```shell
-export PYTHONPATH=.
-accelerate launch scripts/evaluation/gen_eval.py configs/models/openuni_b_internvl3_1b_sana_0_6b_512_hf.py \ 
-         --checkpoint /path/to/your/ckpt  --batch_size 8  \ 
-         --output /path/to/save/results \
-         --height 512 -width 512 \
-         --seed 42
-```
-
-### DPG Bench
-```shell
-export PYTHONPATH=.
-accelerate launch scripts/evaluation/dpg_bench.py configs/models/openuni_b_internvl3_1b_sana_0_6b_512_hf.py \ 
-         --checkpoint /path/to/your/ckpt  --batch_size 8  \ 
-         --output /path/to/save/results \
-         --height 512 -width 512 \
-         --seed 42
-```
+## 🙏 Acknowledgement
+The project builds upon the following pioneering works:
+- [SANA](https://github.com/NVlabs/Sana): We use SANA as our diffusion module, considering its efficiency and strong performance.
+- [InternVL3](https://github.com/OpenGVLab/InternVL): We use the latest InternVL3 as our base multimodal LLM.
+- [MetaQuery](https://xichenpan.com/metaquery): OpenUni is inspired by MetaQuery and is an open-source implementation of this work.
+- [BLIP3-o](https://github.com/JiuhaiChen/BLIP3o): We thank the BLIP3-o team for releasing the precious high-quality tuning dataset.
