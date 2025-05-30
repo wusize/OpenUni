@@ -45,7 +45,7 @@ huggingface-cli download wusize/openuni  --local-dir checkpoints --repo-type mod
 ```
 
 ```text
-Harmon/
+OpenUni/
 ├── checkpoints
     ├── openuni_b_internvl3_1b_sana_0_6b_512_hf_blip3o60k.pth
     ├── openuni_b_internvl3_1b_sana_0_6b_512_hf_text2image23m.pth
