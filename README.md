@@ -11,8 +11,19 @@
 
 ## Introduction
 
-This is a repo under construction, named OpenUni, an open-source version of [MetaQuery](https://xichenpan.com/metaquery) for unifying multimodal understanding and generation.
-Currently, we provide three model variants: OpenUni-B-512, OpenUni-L-512, OpenUni-L-1024. We will be updating this repo so stay tuned!
+This is a repo under construction, named OpenUni, an open-source version of [MetaQuery](https://xichenpan.com/metaquery) for unifying multimodal understanding and generation. With a minimalist choice of architecture, we demonstrate that \modelname~can: 1) generate high-quality and instruction-aligned images, and 2) achieve exceptional performance on standard benchmarks such as GenEval, DPG-Bench, and WISE, with only 1.1B and 3.1B activated parameters. Currently, we provide three model variants: OpenUni-B-512, OpenUni-L-512 and OpenUni-L-1024. Checkpoints from both pre-training and fine-tuning are provided.
+
+## 🔥 Model Zoo
+
+| Model Name | Image Size | MLMM Model | Diffusion Model | Pre-trained | Fine-tuned |
+|------------|------------|------------|-----------------|-------------|------------|
+| OpenUni-B-512 | 512×512 | [InternVL3-1B](https://huggingface.co/OpenGVLab/InternVL3-1B) | [SANA-0.6B-512px](https://huggingface.co/Efficient-Large-Model/Sana_600M_512px_diffusers) | [Link](https://huggingface.co/wusize/openuni/blob/main/openuni_b_internvl3_1b_sana_0_6b_512_hf_text2image23m.pth) | [Link](https://huggingface.co/wusize/openuni/blob/main/openuni_b_internvl3_1b_sana_0_6b_512_hf_blip3o60k.pth) |
+| OpenUni-L-512 | 512×512 | [InternVL3-2B](https://huggingface.co/OpenGVLab/InternVL3-2B) | [SANA-1.6B-512px](https://huggingface.co/Efficient-Large-Model/Sana_600M_512px_diffusers) | [Link](https://huggingface.co/wusize/openuni/blob/main/openuni_l_internvl3_2b_sana_1_6b_512_hf_text2image23m.pth) | [Link](https://huggingface.co/wusize/openuni/blob/main/openuni_l_internvl3_2b_sana_1_6b_512_hf_blip3o60k.pth) |
+| OpenUni-L-1024 | 1024×1024 | [InternVL3-2B](https://huggingface.co/OpenGVLab/InternVL3-2B) | [SANA1.5-1.6B-1024px](https://huggingface.co/Efficient-Large-Model/SANA1.5_1.6B_1024px_diffusers) | [Link](https://huggingface.co/wusize/openuni/blob/main/openuni_l_internvl3_2b_sana_1_6b_512_hf_text2image23m.pth) | [Link](https://huggingface.co/wusize/openuni/blob/main/openuni_l_internvl3_2b_sana_1_6b_1024_hf_blip3o60k.pth) |
+
+
+
+
 
 ## Environment (just for reference)
 ```
@@ -23,6 +34,32 @@ torch==2.3.1
 flash_attn==2.3.4
 ```
 
+## Text-to-Image
+
+Please download our released model weights from 🤗[wusize/openuni](https://huggingface.co/wusize/openuni). It is recommended to use the following command to download the checkpoints
+
+
+```bash
+# pip install -U "huggingface_hub[cli]"
+huggingface-cli download wusize/openuni  --local-dir checkpoints --repo-type model
+```
+
+```text
+Harmon/
+├── checkpoints
+    ├── openuni_b_internvl3_1b_sana_0_6b_512_hf_blip3o60k.pth
+    ├── openuni_b_internvl3_1b_sana_0_6b_512_hf_text2image23m.pth
+    ├── openuni_l_internvl3_2b_sana_1_6b_1024_hf_blip3o60k.pth
+    ├── openuni_l_internvl3_2b_sana_1_6b_1024_hf_blip3o60k.pth
+    ├── openuni_l_internvl3_2b_sana_1_6b_512_hf_blip3o60k.pth
+    ├── openuni_l_internvl3_2b_sana_1_6b_512_hf_text2image23m.pth
+```
+
+### Inference
+Please refer to [docs/INFERENCE.md](docs/INFERENCE.md).
+
+### Evaluation
+Please refer to [docs/EVALUATION.md](docs/EVALUATION.md).
 
 
 ## 📚 Citation

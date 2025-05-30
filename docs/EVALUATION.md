@@ -1,4 +1,5 @@
 ## Evaluation
+For now we only provide inference code, please turn to the official repos of the benchmarks to calculate final performance.
 
 ### GenEval
 ```shell
