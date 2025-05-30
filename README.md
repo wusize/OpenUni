@@ -50,7 +50,7 @@ Harmon/
     ├── openuni_b_internvl3_1b_sana_0_6b_512_hf_blip3o60k.pth
     ├── openuni_b_internvl3_1b_sana_0_6b_512_hf_text2image23m.pth
     ├── openuni_l_internvl3_2b_sana_1_6b_1024_hf_blip3o60k.pth
-    ├── openuni_l_internvl3_2b_sana_1_6b_1024_hf_blip3o60k.pth
+    ├── openuni_l_internvl3_2b_sana_1_6b_1024_hf_text2image23m.pth
     ├── openuni_l_internvl3_2b_sana_1_6b_512_hf_blip3o60k.pth
     ├── openuni_l_internvl3_2b_sana_1_6b_512_hf_text2image23m.pth
 ```
