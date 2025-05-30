@@ -61,6 +61,10 @@ Please refer to [docs/INFERENCE.md](docs/INFERENCE.md).
 ### Evaluation
 Please refer to [docs/EVALUATION.md](docs/EVALUATION.md).
 
+### Train
+
+We are still organizing the data and code. It's coming soon!
+
 
 ## 📚 Citation
 
