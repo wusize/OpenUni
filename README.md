@@ -1,6 +1,6 @@
 # OpenUni: A Simple Baseline for Unified Multimodal Understanding and Generation
 
-![](data/teaser.png)
+![](figures/teaser.png)
 
 > **[OpenUni: A Simple Baseline for Unified Multimodal Understanding and Generation](https://arxiv.org/abs/2505.23661)**
 >
