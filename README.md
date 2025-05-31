@@ -16,7 +16,7 @@ This is a repo under construction, named OpenUni, an open-source version of [Met
 
 ## Concerns Over the Use of Distillation Data
 
-We have noticed the concerns in the community over the use of distillation data in the fine-tuning stage, especially for results on GenEval. A considerable portion of the fine-tuning data use the same prompt style as GenEval's test sanples. We will soon release a new version trained without these distillation data. Also, we will clarify this in a modified version of the report, highlighting methods that use ditillation data, prompt rewriting, RL and CoT.
+We have noticed the concerns from the community over the use of distillation data in the fine-tuning stage, especially for results on GenEval. A considerable portion of the fine-tuning data use the same prompt style as GenEval's test sanples. We will soon release a new version trained without these distillation data. Also, we will clarify this in a modified version of the report, highlighting methods that use ditillation data, prompt rewriting, RL and CoT.
 
 ## Mistake
 
