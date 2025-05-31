@@ -6,12 +6,20 @@
 >
 > Size Wu, Zhonghua Wu, Zerui Gong, Qingyi Tao, Sheng Jin, Qinyue Li, Wei Li, Chen Change Loy
 >
-> [![arXiv](https://img.shields.io/badge/arXiv-2505.23661-b31b1b.svg)](https://arxiv.org/abs/2505.23661)
+> [![report](https://img.shields.io/badge/arXiv-2505.23661-b31b1b.svg)](docs/report.pdf)
 > [![Bibtex](https://img.shields.io/badge/Cite-BibTeX-blue)](https://github.com/wusize/OpenUni?tab=readme-ov-file#-citation)
 
 ## Introduction
 
 This is a repo under construction, named OpenUni, an open-source version of [MetaQuery](https://xichenpan.com/metaquery) for unifying multimodal understanding and generation. With a minimalist choice of architecture, we demonstrate that \modelname~can: 1) generate high-quality and instruction-aligned images, and 2) achieve exceptional performance on standard benchmarks such as GenEval, DPG-Bench, and WISE, with only 1.1B and 3.1B activated parameters. Currently, we provide three model variants: OpenUni-B-512, OpenUni-L-512 and OpenUni-L-1024. Checkpoints from both pre-training and fine-tuning are provided.
+
+
+## Mistake
+
+We would like to apologize to the community for a mistake in our original technical report on arXiv. In the report, we confused MME (sum) and MME-p metrics. 
+We will update report on arXiv. In the meantime, this [corrected version](docs/report.pdf) is attached to this GitHub repository.
+
+
 
 ## 🔥 Model Zoo
 
