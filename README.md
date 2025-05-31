@@ -11,8 +11,12 @@
 
 ## Introduction
 
-This is a repo under construction, named OpenUni, an open-source version of [MetaQuery](https://xichenpan.com/metaquery) for unifying multimodal understanding and generation. With a minimalist choice of architecture, we demonstrate that \modelname~can: 1) generate high-quality and instruction-aligned images, and 2) achieve exceptional performance on standard benchmarks such as GenEval, DPG-Bench, and WISE, with only 1.1B and 3.1B activated parameters. Currently, we provide three model variants: OpenUni-B-512, OpenUni-L-512 and OpenUni-L-1024. Checkpoints from both pre-training and fine-tuning are provided.
+This is a repo under construction, named OpenUni, an open-source version of [MetaQuery](https://xichenpan.com/metaquery) for unifying multimodal understanding and generation. With a minimalist choice of architecture, we demonstrate that OpenUni can: 1) generate high-quality and instruction-aligned images, and 2) achieve exceptional performance on standard benchmarks such as GenEval, DPG-Bench, and WISE, with only 1.1B and 3.1B activated parameters. Currently, we provide three model variants: OpenUni-B-512, OpenUni-L-512 and OpenUni-L-1024. Checkpoints from both pre-training and fine-tuning are provided.
 
+
+## Concerns Over the Use of Distillation Data
+
+We have noticed the concerns in the community over the use of distillation data in the fine-tuning stage, especially for results on GenEval. A considerable portion of the fine-tuning data use the same prompt style as GenEval's test sanples. We will soon release a new version trained without these distillation data. Also, we will clarify this in a modified version of the report, highlighting methods that use ditillation data, prompt rewriting, RL and CoT.
 
 ## Mistake
 
