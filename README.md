@@ -17,7 +17,7 @@ This is a repo under construction, named OpenUni, an open-source version of [Met
 ## Mistake
 
 We would like to apologize to the community for a mistake in our original technical report on arXiv. In the report, we confused MME (sum) and MME-p metrics. 
-We will update report on arXiv. In the meantime, this [corrected version](docs/report.pdf) is attached to this GitHub repository.
+We will update report on arXiv. In the meantime, the [corrected version](docs/report.pdf) is attached to this GitHub repository.
 
 
 
