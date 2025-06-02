@@ -22,8 +22,7 @@ import numpy as np
 class CaptionDataset(Dataset):
     def __init__(self,
                  data_path,
-                 local_folder,
-                 latents_folder=None,
+                 image_folder=None,
                  debug=False,
                  image_processor=None,
                  ceph_folder=None,
@@ -35,8 +34,8 @@ class CaptionDataset(Dataset):
                  min_image_size=80,
                  image_size=256,
                  image_length=256,
-                 image_tokens=None,
-                 image_latents=None,
+                 image_tokens_folder=None,
+                 image_latents_folder=None,
                  cap_folder=None,
                  cap_source='caption',
                  tokenizer_kwargs=dict(add_special_tokens=True),
@@ -45,8 +44,7 @@ class CaptionDataset(Dataset):
         super().__init__()
         self.data_path = data_path
         self._load_data(data_path)
-        self.local_folder = local_folder
-        self.latents_folder = latents_folder if latents_folder is not None else local_folder
+        self.image_folder = image_folder
         self.cap_folder = cap_folder
         self.cap_source = cap_source
         self.debug = debug
@@ -64,8 +62,8 @@ class CaptionDataset(Dataset):
 
         self.max_length = max_length
         self.image_length = image_length
-        self.image_tokens = image_tokens
-        self.image_latents = image_latents
+        self.image_tokens_folder = image_tokens_folder
+        self.image_latents_folder = image_latents_folder
         self.min_image_size = min_image_size
         self.image_size = image_size
         self.unconditional = unconditional
@@ -103,7 +101,7 @@ class CaptionDataset(Dataset):
         return io.BytesIO(data_bytes)
 
     def _read_image(self, image_file):
-        if self.local_folder is None:
+        if self.image_folder is None:
             assert self.use_ceph
             assert self.ceph_folder is not None
             image = Image.open(
@@ -113,7 +111,7 @@ class CaptionDataset(Dataset):
             )
         else:
             image = Image.open(
-                os.path.join(self.local_folder, image_file)
+                os.path.join(self.image_folder, image_file)
             )
         assert image.width > self.min_image_size and image.height > self.min_image_size, f"Image: {image.size}"
         assert image.width / image.height > 0.1, f"Image: {image.size}"
@@ -168,8 +166,8 @@ class CaptionDataset(Dataset):
         try:
             data_sample = self.data_list[idx]
 
-            if self.image_tokens is not None:
-                image_tokens = torch.load(os.path.join(self.local_folder + f'_{self.image_tokens}',
+            if self.image_tokens_folder is not None:
+                image_tokens = torch.load(os.path.join(self.image_tokens_folder,
                                                        data_sample['image'] + '.pt')).long()
                 data = dict(image_tokens=image_tokens)
             elif self.latents_ceph_folder is not None:
@@ -181,21 +179,18 @@ class CaptionDataset(Dataset):
                     )
                 )
                 data = dict(image_latents=image_latents)
-            elif self.image_latents is not None:
-                image_latents = torch.load(os.path.join(self.latents_folder + f'_{self.image_latents}',
-                                                       data_sample['image'] + '.pt'))
+            elif self.image_latents_folder is not None:
+                image_latents = torch.load(os.path.join(self.image_latents_folder,
+                                                        data_sample['image'] + '.pt'))
                 data = dict(image_latents=image_latents)
             else:
                 image = self._read_image(data_sample['image']).convert('RGB')
                 data = self._process_image(image)
 
-            # with open(f"{self.cap_folder}/{data_sample['annotation']}", 'r') as f:
-            #     caption = json.load(f)[self.cap_source]
-
             caption = self._read_json(data_sample['annotation'])[self.cap_source]
 
             data.update(self._process_text(caption))
-            data.update(image_dir=self.latents_folder, image_file=data_sample['image'],
+            data.update(image_dir=self.image_folder, image_file=data_sample['image'],
                         type='text2image')
 
             return data
