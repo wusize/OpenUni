@@ -1,3 +1,57 @@
+
+## Extract latents
+To increase training efficiency, it is necessary to extract and save the VAE latents.
+
+
+### 512x512 Images
+
+```shell
+torchrun \
+    --nproc_per_node=$GPUS_PER_NODE \
+    --nnodes=$NNODES \
+    --node_rank=$NODE_RANK \
+    --master_addr=$MASTER_ADDR \
+    --master_port=$MASTER_PORT \
+    scripts/process_data/tokenize_images_ddp_dc32_hf.py \
+    $CONFIG \
+    --batch_size 32
+```
+
+Set `CONFIG` to the following dataset configs:
+```shell
+configs/datasets/internvl3_2b_512/laion6m.py
+configs/datasets/internvl3_2b_512/megalith10m.py
+configs/datasets/internvl3_2b_512/redcaps5m.py
+configs/datasets/internvl3_2b_512/text2image2m.py
+configs/datasets/internvl3_2b_512/blip3o60k.py
+```
+
+
+### 1024X1024 Images
+
+```shell
+torchrun \
+    --nproc_per_node=$GPUS_PER_NODE \
+    --nnodes=$NNODES \
+    --node_rank=$NODE_RANK \
+    --master_addr=$MASTER_ADDR \
+    --master_port=$MASTER_PORT \
+    scripts/process_data/tokenize_images_ddp_dc32_hf.py \
+    $CONFIG \
+    --batch_size 8
+```
+
+Set `CONFIG` to the following dataset configs:
+```shell
+configs/datasets/internvl3_2b_1024/laion6m.py
+configs/datasets/internvl3_2b_1024/megalith10m.py
+configs/datasets/internvl3_2b_1024/redcaps5m.py
+configs/datasets/internvl3_2b_1024/text2image2m.py
+configs/datasets/internvl3_2b_1024/blip3o60k.py
+```
+
+
+
 ## Text-to-Image
 ### OpenUni-B-512
 
