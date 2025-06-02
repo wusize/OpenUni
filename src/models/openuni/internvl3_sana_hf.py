@@ -29,7 +29,7 @@ def find_all_linear_names(model):
     return list(lora_module_names)
 
 
-class MMUniInternVL3SANAHF(BaseModel):
+class OpenUniInternVL3SANAHF(BaseModel):
     def __init__(self,
                  lmm,
                  transformer,
@@ -49,7 +49,7 @@ class MMUniInternVL3SANAHF(BaseModel):
                  freeze_transformer=True,
                  vit_input_size=448,
                  max_length=2048,
-                 proj_first=False
+                 proj_type='enc_proj'
                  ):
         super().__init__()
         self.use_activation_checkpointing = use_activation_checkpointing
@@ -92,15 +92,22 @@ class MMUniInternVL3SANAHF(BaseModel):
         self.num_queries = num_queries
         self.connector = ConnectorEncoder(ConnectorConfig(**connector))
 
-        self.proj_first = proj_first
-        if self.proj_first:
+        self.proj_type = proj_type
+        if self.proj_type == 'proj_enc':
             assert self.connector.config.hidden_size == self.transformer.config.caption_channels
             self.projector = nn.Linear(
                 self.llm.config.hidden_size, self.connector.config.hidden_size)
-        else:
+        elif self.proj_type == 'enc_proj':
             assert self.connector.config.hidden_size == self.llm.config.hidden_size
             self.projector = nn.Linear(
                 self.connector.config.hidden_size, self.transformer.config.caption_channels)
+        elif self.proj_type == 'proj_enc_proj':
+            self.projector = nn.ModuleList([
+                nn.Linear(self.llm.config.hidden_size, self.connector.config.hidden_size),
+                nn.Linear(self.connector.config.hidden_size, self.transformer.config.caption_channels)
+            ])
+        else:
+            raise ValueError(f'Unknown proj type: {self.proj_type}')
 
         self.meta_queries = nn.Parameter(
             torch.zeros(num_queries, self.llm.config.hidden_size))
@@ -116,10 +123,14 @@ class MMUniInternVL3SANAHF(BaseModel):
             print_log(f'Load pretrained weight from {pretrained_pth}')
 
     def llm2dit(self, x):
-        if self.proj_first:
+        if self.proj_type == 'proj_enc':
             return self.connector(self.projector(x))
-        else:
+        elif self.proj_type == 'enc_proj':
             return self.projector(self.connector(x))
+        elif self.proj_type == 'proj_enc_proj':
+            return self.projector[1](self.connector(self.projector[0](x)))
+        else:
+            raise ValueError(f'Unknown proj type: {self.proj_type}')
 
     @property
     def llm(self):

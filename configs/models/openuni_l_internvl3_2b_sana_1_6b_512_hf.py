@@ -1,5 +1,5 @@
 import torch
-from src.models.mmuni.internvl3_sana_hf import MMUniInternVL3SANAHF
+from src.models.openuni.internvl3_sana_hf import OpenUniInternVL3SANAHF
 from src.models.internvl3.modeling_internvl_chat import InternVLChatModel
 from diffusers import (AutoencoderDC, SanaTransformer2DModel,
                        DPMSolverMultistepScheduler, FlowMatchEulerDiscreteScheduler)
@@ -13,7 +13,7 @@ with read_base():
 
 sana_model_name_or_path = f"Efficient-Large-Model/Sana_1600M_{image_size}px_diffusers"
 
-model = dict(type=MMUniInternVL3SANAHF,
+model = dict(type=OpenUniInternVL3SANAHF,
              num_queries=256,
              connector=dict(
                  hidden_size=1536,
