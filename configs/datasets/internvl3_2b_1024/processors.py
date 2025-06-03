@@ -23,7 +23,7 @@ prompt_template = dict(
 tokenizer_kwargs = dict(add_special_tokens=True)
 
 pad_index = 0
-image_length = 1024
+image_length = 256
 image_size = 1024
 
 #######################################################################
