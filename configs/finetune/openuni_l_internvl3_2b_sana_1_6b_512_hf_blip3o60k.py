@@ -8,12 +8,12 @@ from src.optimisers.custom_adamw import CustomAdamW
 
 with read_base():
     from ..models.openuni_l_internvl3_2b_sana_1_6b_512_hf import model
-    from ..datasets.internvl3_2b_512.blip3o_60k_latents import train_dataloader
+    from ..datasets.internvl3_2b_512.blip3o60k_latents import train_dataloader
 
 model.num_queries = 256
 model.use_activation_checkpointing = False
 model.freeze_transformer = False
-model.pretrained_pth = 'work_dirs/metaqueries_internvl3_2b_sana_1_6b_hf_text2image_frozen.pth'
+model.pretrained_pth = 'path/to/your/pretrained/model.pth'
 
 # Scheduler & Optimizer
 accumulative_counts = 1

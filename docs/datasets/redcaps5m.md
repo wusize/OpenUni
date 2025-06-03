@@ -24,7 +24,7 @@ OpenUni/
 
 ## Extract Images and Captions
 
-Then to extract the images from .tar files. To extract the images of 1024
+Then to extract the images from .tar files.
 
 ```shell
 cd data/redcaps5m/raw

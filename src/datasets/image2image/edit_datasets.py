@@ -42,7 +42,7 @@ class ImageEditDataset(CaptionDataset):
 
             data.update(
                 pixel_values_src=pixel_values_src, pixel_values=pixel_values,
-                image_dir=self.local_folder, image_file=data_sample['image'],
+                image_dir=self.image_folder, image_file=data_sample['image'],
                 type='image2image')
 
             return data
@@ -76,7 +76,7 @@ class ReconstructDataset(ImageEditDataset):
 
             data.update(
                 pixel_values_src=pixel_values_src, pixel_values=pixel_values,
-                image_dir=self.local_folder, image_file=data_sample['image'],
+                image_dir=self.image_folder, image_file=data_sample['image'],
                 type='image2image')
 
             return data

@@ -23,7 +23,7 @@ dataset = dict(type=BLIP3oDataset,
                max_length=max_length)
 
 train_dataloader = dict(
-    batch_size=8,
+    batch_size=16,
     num_workers=4,
     pin_memory=True,
     dataset=dataset,

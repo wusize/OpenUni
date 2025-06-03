@@ -8,7 +8,7 @@ from src.optimisers.custom_adamw import CustomAdamW
 
 with read_base():
     from ..models.openuni_l_internvl3_2b_sana_1_6b_512_hf import model
-    from ..datasets.internvl3_2b_512.text2image23m_ceph import train_dataloader
+    from ..datasets.internvl3_2b_512.pretrain23m_latents import train_dataloader
 
 model.num_queries = 256
 model.use_activation_checkpointing = False

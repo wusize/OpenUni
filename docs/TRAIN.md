@@ -151,13 +151,13 @@ GPUS_PER_NODE=8 NNODES=2 bash scripts/train_ddp.sh \
 
 
 ## Image-to-Image (Under Development)
-We have provided the code but do not ensure this works.
+We have provided the code but do not guarantee this works.
 ### OpenUni-B-512
 
 ```shell
 cd /path/to/OpenUni
 export PYTHONPATH=./:$PYTHONPATH
 GPUS_PER_NODE=8 NNODES=1 bash scripts/train_ddp.sh \
-     configs/pretrain/openuni_b_internvl3_1b_sana_0_6b_512_hf_image2image23m.py \
+     configs/pretrain/openuni_b_internvl3_1b_sana_0_6b_512_hf_image2image10m.py \
      --deepspeed deepspeed_zero2
 ```
