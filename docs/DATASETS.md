@@ -4,7 +4,7 @@ Some of our pretraining data are directly from open-source datasets,
 including [megalith10m.md](datasets/megalith10m.md) and [text2image2m.md](datasets/text2image2m.md). Additionally, we
 collected and re-captioned 6m [Laion](https://huggingface.co/datasets/dclure/laion-aesthetics-12m-umap) images and 
 5m [RedCaps](https://redcaps.xyz) images. Due to legal concerns, we are unable to redistribute these images.
-We will release the urls and captions as well as tool to download them soon.
+We will release the urls and captions as well as the tool to download them soon.
 
 Considering that RedCaps images are super large and hard to obtain, we give an alternative dataset for this
 part of data, i.e., CC12M. Again, we do not have the right to redistribute the images but only upload our captions.
