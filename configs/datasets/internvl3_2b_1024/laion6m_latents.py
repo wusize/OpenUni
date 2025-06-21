@@ -11,7 +11,8 @@ max_length = 128
 
 dataset = dict(type=CaptionDataset,
                image_size=image_size,
-               cap_folder='data/laion6m/captions',
+               cap_source='re_caption',
+               cap_folder='data/laion6m/raw',
                data_path='data/laion6m/data.json',
                # image_folder='data/laion6m/raw',
                image_latents_folder=f'data/laion6m/raw_dc32_{image_size}',
