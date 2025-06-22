@@ -1,15 +1,15 @@
 
 # Laion6m
 
-This dataset is originally from [dclure/laion-aesthetics-12m-umap](https://huggingface.co/datasets/dclure/laion-aesthetics-12m-umap).
-We re-captioned 6m of them whose width-height ratio is within 3.
+This dataset is originally from [RedCaps12M](https://redcaps.xyz/download).
+We successfully downloaded and re-captioned 5m of them.
 
 ## Download
-Since we are not authorized to re-distribute the images of Laion dataset, here we only provide the urls and captions
-in [wusize/laion6m_recap](https://huggingface.co/datasets/wusize/laion6m_recap), which can be downloaded by:
+Since we are not authorized to re-distribute the images of these Redit images, here we only provide the urls and captions
+in [wusize/redcaps5m_recap](https://huggingface.co/datasets/wusize/redcaps5m_recap), which can be downloaded by:
 ```shell
 cd /path/to/OpenUni
-huggingface-cli download wusize/laion6m_recap --local-dir data/laion6m/parquets --repo-type dataset
+huggingface-cli download wusize/redcaps5m_recap --local-dir data/redcaps5m/parquets --repo-type dataset
 ```
 It is then recommended to download the images using [img2dataset](https://github.com/rom1504/img2dataset). After downloading
 the images, please arrange the data in the following format.
@@ -17,7 +17,7 @@ the images, please arrange the data in the following format.
 ```text
 OpenUni/
 ├── data
-    ├── laion6m
+    ├── redcaps5m
         ├── raw
             ├── 00000000
                 ├── 00000001.jpg
@@ -54,9 +54,9 @@ max_length = 128
 dataset = dict(type=CaptionDataset,
                image_size=image_size,
                cap_source='re_caption',
-               cap_folder='data/laion6m/raw',
-               data_path='data/laion6m/data.json',
-               image_folder='data/laion6m/raw',
+               cap_folder='data/redcaps5m/raw',
+               data_path='data/redcaps5m/data.json',
+               image_folder='data/redcaps5m/raw',
                unconditional=0.1,
                prompt_template=prompt_template,
                ceph_folder=None,

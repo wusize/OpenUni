@@ -26,13 +26,13 @@ This is a repo under construction, named OpenUni, an open-source version of [Met
 
 
 
-## Environment (just for reference)
+## Environment
 ```
 mmengine
 xtuner
-transformers==4.45.2
-torch==2.3.1
-flash_attn==2.3.4
+transformers
+torch
+flash_attn
 ```
 
 ## Text-to-Image
@@ -64,8 +64,8 @@ Please refer to [docs/EVALUATION.md](docs/EVALUATION.md).
 
 ### Train
 
-We are still organizing the data and code. It's coming soon!
-
+Please refer to [docs/DATASETS.md](docs/DATASETS.md) and [docs/datasets](docs/datasets) to prepare the datasets. After having the datasets,
+please follow the instructions in [docs/TRAIN.md](docs/TRAIN.md) to launch training scripts.
 
 ## 📚 Citation
 

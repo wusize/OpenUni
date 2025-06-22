@@ -11,8 +11,9 @@ max_length = 128
 
 dataset = dict(type=CaptionDataset,
                image_size=image_size,
+               cap_source='re_caption',
                cap_folder='data/redcaps5m/raw',
-               data_path='data/redcaps5m/redcaps5m_data.json',
+               data_path='data/redcaps5m/data.json',
                image_folder='data/redcaps5m/raw',
                unconditional=0.1,
                prompt_template=prompt_template,
