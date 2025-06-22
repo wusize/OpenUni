@@ -1,5 +1,5 @@
 
-# Laion6m
+# Redcaps6m
 
 This dataset is originally from [RedCaps12M](https://redcaps.xyz/download).
 We successfully downloaded and re-captioned 5m of them.
