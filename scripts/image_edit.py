@@ -47,11 +47,13 @@ if __name__ == '__main__':
 
     prompt = f'{image_tokens}\n{args.prompt}'
     prompt = prompt_template['INSTRUCTION'].format(input=prompt)
-    prompt += prompt_template['IMG_START_TOKEN']
+    if prompt_template.get('IMG_START_TOKEN_FOR_GENERATION', True):
+        prompt += prompt_template['IMG_START_TOKEN']
 
     cfg_prompt = f'{image_tokens}\n{args.cfg_prompt}'
     cfg_prompt = prompt_template['INSTRUCTION'].format(input=cfg_prompt)
-    cfg_prompt += prompt_template['IMG_START_TOKEN']
+    if prompt_template.get('IMG_START_TOKEN_FOR_GENERATION', True):
+        cfg_prompt += prompt_template['IMG_START_TOKEN']
 
     inputs = model.tokenizer(
         [prompt, cfg_prompt], add_special_tokens=True, return_tensors='pt', padding=True).to(model.device)

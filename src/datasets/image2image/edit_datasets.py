@@ -21,7 +21,8 @@ class ImageEditDataset(CaptionDataset):
                        prompt_template['IMG_END_TOKEN']
         prompt = f'{image_tokens}\n{text}'
         prompt = self.prompt_template['INSTRUCTION'].format(input=prompt)
-        prompt += prompt_template['IMG_START_TOKEN']
+        if self.prompt_template.get('IMG_START_TOKEN_FOR_GENERATION', True):
+            prompt += prompt_template['IMG_START_TOKEN']
         input_ids = self.tokenizer.encode(prompt, return_tensors='pt', **self.tokenizer_kwargs)[0]
 
         return dict(input_ids=input_ids)

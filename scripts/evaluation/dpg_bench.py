@@ -88,7 +88,8 @@ if __name__ == '__main__':
     else:
         cfg_prompt = model.prompt_template['GENERATION'].format(input=args.cfg_prompt.strip())
     cfg_prompt = model.prompt_template['INSTRUCTION'].format(input=cfg_prompt)
-    cfg_prompt += model.prompt_template['IMG_START_TOKEN']
+    if model.prompt_template.get('IMG_START_TOKEN_FOR_GENERATION', True):
+        cfg_prompt += model.prompt_template['IMG_START_TOKEN']
 
     if accelerator.is_main_process:
         os.makedirs(args.output, exist_ok=True)
@@ -103,7 +104,8 @@ if __name__ == '__main__':
             prompt = copy.deepcopy(data_sample['text'].strip())
             prompt = model.prompt_template['GENERATION'].format(input=prompt)
             prompt = model.prompt_template['INSTRUCTION'].format(input=prompt)
-            prompt += model.prompt_template['IMG_START_TOKEN']
+            if model.prompt_template.get('IMG_START_TOKEN_FOR_GENERATION', True):
+                prompt += model.prompt_template['IMG_START_TOKEN']
             prompts.append(prompt)
 
         prompts = prompts * 4
