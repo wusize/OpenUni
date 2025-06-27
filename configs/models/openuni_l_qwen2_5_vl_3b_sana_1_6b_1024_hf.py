@@ -7,7 +7,7 @@ from diffusers import (AutoencoderDC, SanaTransformer2DModel,
 from mmengine.config import read_base
 
 with read_base():
-    from ..datasets.qwen2_5_vl_3b_512.processors import \
+    from ..datasets.qwen2_5_vl_3b_1024.processors import \
         prompt_template, tokenizer, qwen2_5_vl_model_name_or_path, image_size
 
 

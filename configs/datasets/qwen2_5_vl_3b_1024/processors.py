@@ -26,7 +26,7 @@ tokenizer_kwargs = dict(add_special_tokens=True)
 
 pad_index = 0
 image_length = 256
-image_size = 512
+image_size = 1024
 
 #######################################################################
 #            PART 2  Model & Tokenizer & Image Processor              #
